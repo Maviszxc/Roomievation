@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RoomieVation | Rayal Designs</title>
+    <link rel="stylesheet" href="{% static 'home/css/dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/input.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/index.css' %}" />
+    <link
+      rel="icon"
+      href="{% static 'home/pics/logos.png' %}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* Additional Styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+      }
+      .header-dash {
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+      }
+      .nav__menu {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .nav__icon {
+        font-size: 1.5rem;
+        color: #333;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+      .nav__icon:hover {
+        color: #108b1c;
+      }
+      .search-bar {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        outline: none;
+        width: 250px;
+      }
+      .parent {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 20px;
+      }
+      #room-models-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        width: 100%;
+      }
+      .room-model {
+        flex: 1 1 calc(25% - 20px); /* Adjust width based on the number of items */
+        position: relative;
+        margin-bottom: 20px;
+
+        border-radius: 10px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+      .room-model:hover {
+        transform: scale(1.05);
+      }
+      .room-model img {
+        width: 100%; /* Ensure images take full width of their container */
+        height: 200px; /* Fixed height for uniformity */
+        object-fit: cover; /* Cover to maintain aspect ratio */
+        border-radius: 10px;
+      }
+      @media (max-width: 768px) {
+        .room-model {
+          flex: 1 1 calc(50% - 20px); /* Two items per row on smaller screens */
+        }
+
+        .header-dash {
+          background-color: #fff;
+          margin-top: 90px;
+        }
+
+        nav {
+          background-color: #fff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+      }
+      @media (max-width: 480px) {
+        .room-model {
+          flex: 1 1 calc(100% - 20px); /* One item per row on mobile */
+        }
+
+        .header-dash {
+          margin-top: 90px;
+        }
+
+        nav {
+          background-color: #fff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header-dash">
+      <nav>
+        <div class="nav__menu">
+          <input type="text" class="search-bar" placeholder="Search..." />
+          <i class="fas fa-heart nav__icon" title="Favorites"></i>
+          <i class="fas fa-shopping-cart nav__icon" title="Shop"></i>
+          <i class="fas fa-user nav__icon" title="Profile"></i>
+        </div>
+      </nav>
+    </header>
+
+    <div class="parent grid">
+      <div id="room-models-container"></div>
+    </div>
+
+    <script>
+      async function fetchRoomModels() {
+        try {
+          const response = await fetch(
+            "http://localhost:4000/api/v1/roomModels"
+          );
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const roomModels = await response.json();
+          displayRoomModels(roomModels);
+        } catch (error) {
+          console.error("Error fetching room models:", error);
+          document.getElementById("room-models-container").innerHTML =
+            "<p>Error loading room models.</p>";
+        }
+      }
+
+      function displayRoomModels(roomModels) {
+        const container = document.getElementById("room-models-container");
+        container.innerHTML = ""; // Clear the container
+
+        roomModels.forEach((model) => {
+          const modelDiv = document.createElement("div");
+          modelDiv.className = "room-model";
+
+          modelDiv.innerHTML = `
+                    <img src="{% static '/home/pics/' %}${model.image}" alt="${model.name}" data-id="${model._id}" />
+                `;
+
+          modelDiv.querySelector("img").addEventListener("click", () => {
+            const imageId = model._id;
+            if (imageId) {
+              window.location.href = `/roomDetail/${imageId}/`;
+            } else {
+              console.error("Image ID is undefined");
+            }
+          });
+
+          container.appendChild(modelDiv);
+        });
+      }
+
+      // Fetch room models when the page loads
+      window.onload = fetchRoomModels;
+    </script>
+  </body>
+</html>

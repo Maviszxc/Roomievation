@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RoomieVation | Rayal Designs</title>
+    <link rel="stylesheet" href="{% static 'home/css/dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/input.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/index.css' %}" />
+    <link rel="icon" href="{% static 'home/pics/logos.png' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+    <header class="header-dash">
+        <nav>
+            <!-- Navigation content -->
+        </nav>
+    </header>
+
+    <div class="parent grid">
+        <div id="room-models-container"></div>
+    </div>
+
+    <script>
+        async function fetchRoomModels() {
+            try {
+                const response = await fetch("http://localhost:4000/api/v1/roomFurnitures");
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                const roomModels = await response.json();
+                displayRoomModels(roomModels);
+            } catch (error) {
+                console.error("Error fetching room models:", error);
+                document.getElementById("room-models-container").innerHTML = "<p>Error loading furnitures.</p>";
+            }
+        }
+
+        function displayRoomModels(roomModels) {
+            const container = document.getElementById("room-models-container");
+            container.innerHTML = ""; // Clear the container
+
+            roomModels.forEach((model) => {
+                const modelDiv = document.createElement("div");
+                modelDiv.className = "room-model";
+
+                modelDiv.innerHTML = `
+                    <img src="{% static '/home/pics/' %}${model.image}" alt="${model.name}" data-id="${model._id}" />
+                    <h3>${model.name}</h3>
+                    <p>${model.description}</p>
+                    <p>Colors: ${model.colorscheme.join(', ')}</p>
+                    <p>Size: ${model.size.join(', ')}</p>
+                    <p>Stock: ${model.stock}</p>
+                    <p>Price: ₱${model.price.toFixed(2)}</p>
+                `;
+
+                modelDiv.querySelector("img").addEventListener("click", () => {
+                    const imageId = model._id;
+                    if (imageId) {
+                        window.location.href = `/roomDetail/${imageId}/`;
+                    } else {
+                        console.error("Image ID is undefined");
+                    }
+                });
+
+                container.appendChild(modelDiv);
+            });
+        }
+
+        // Fetch room models when the page loads
+        window.onload = fetchRoomModels;
+    </script>
+</body>
+</html>

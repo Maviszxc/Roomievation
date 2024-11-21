@@ -1,0 +1,337 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="{% static 'home/css/roomModel.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/adminDashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/input.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/index.css' %}" />
+    <link
+      rel="icon"
+      href="{% static 'home/pics/logos.png' %}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <title>RoomieVation | Rayal Designs</title>
+  </head>
+  <body>
+    <header class="header-dash">
+      <nav>
+        <!-- Navigation code can go here -->
+      </nav>
+    </header>
+
+    <main>
+      <div class="form-group">
+        <form
+          action="http://localhost:4000/api/v1/roomModels"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <h2>Add Room Model</h2>
+          
+          <div>
+            <label for="roomName">Room Name:</label>
+            <input type="text" id="roomName" name="roomName" required />
+          </div>
+          <div>
+            <label for="roomDescription">Room Description:</label>
+            <input
+              type="text"
+              id="roomDescription"
+              name="roomDescription"
+              required
+            />
+          </div>
+          <div>
+            <label for="roomType">Room Type:</label>
+            <input type="text" id="roomType" name="roomType" required />
+          </div>
+          <div>
+            <label for="roomTheme">Theme:</label>
+            <input type="text" id="roomTheme" name="roomTheme" required />
+          </div>
+          <div>
+            <label for="colorScheme">Color Scheme:</label>
+            <input type="text" id="colorScheme" name="colorScheme" required />
+          </div>
+          <div>
+            <label for="roomImage">Image:</label>
+            <input
+              type="file"
+              id="roomImage"
+              name="roomImage"
+              accept="image/*"
+              required
+            />
+          </div>
+          <button type="submit">Add Room Model</button>
+        </form>
+
+        <form id="updateForm" enctype="multipart/form-data">
+          <h2>Update Room Model</h2>
+          <div>
+            <label for="updateRoomId">Room ID:</label>
+            <input type="text" id="updateRoomId" name="roomId" required />
+          </div>
+          <div>
+            <label for="updateRoomName">Room Name:</label>
+            <input type="text" id="updateRoomName" name="roomName" required />
+          </div>
+          <div>
+            <label for="updateRoomDescription">Room Description:</label>
+            <input
+              type="text"
+              id="updateRoomDescription"
+              name="roomDescription"
+              required
+            />
+          </div>
+          <div>
+            <label for="updateRoomType">Room Type:</label>
+            <input type="text" id="updateRoomType" name="roomType" required />
+          </div>
+          <div>
+            <label for="updateRoomTheme">Theme:</label>
+            <input type="text" id="updateRoomTheme" name="roomTheme" required />
+          </div>
+          <div>
+            <label for="updateColorScheme">Color Scheme:</label>
+            <input
+              type="text"
+              id="updateColorScheme"
+              name="colorScheme"
+              required
+            />
+          </div>
+          <button type="button" onclick="updateRoomModel()">
+            Update Room Model
+          </button>
+        </form>
+
+        <form id="deleteForm">
+          <h2>Delete Room Model</h2>
+          <div>
+            <label for="deleteRoomId">Room ID:</label>
+            <input type="text" id="deleteRoomId" name="roomId" required />
+          </div>
+          <button type="button" onclick="deleteRoomModel()">
+            Delete Room Model
+          </button>
+        </form>
+      </div>
+
+      <div class="form-group">
+        <form
+          action="http://localhost:4000/api/v1/roomFurnitures"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <h2>Add Furniture</h2>
+          <div>
+            <label for="roomID">Room ID:</label>
+            <input type="text" id="roomID" name="roomID" required />
+          </div>
+          <div>
+            <label for="furnitureName">Furniture Name:</label>
+            <input
+              type="text"
+              id="furnitureName"
+              name="furnitureName"
+              required
+            />
+          </div>
+          <div>
+            <label for="furnitureDescription">Furniture Description:</label>
+            <input
+              type="text"
+              id="furnitureDescription"
+              name="furnitureDescription"
+              required
+            />
+          </div>
+          <div>
+            <label for="colorScheme">Color Scheme:</label>
+            <input type="text" id="colorScheme" name="colorScheme" required />
+          </div>
+          <div>
+            <label for="furnitureSize">Size (cm):</label>
+            <input
+              type="text"
+              id="furnitureSize"
+              name="furnitureSize"
+              required
+              placeholder="e.g. 120x60x75"
+            />
+          </div>
+          <div>
+            <label for="furnitureStock">Stock:</label>
+            <input
+              type="number"
+              id="furnitureStock"
+              name="furnitureStock"
+              required
+            />
+          </div>
+          <div>
+            <label for="furnitureAvailability">Availability:</label>
+            <select
+              id="furnitureAvailability"
+              name="furnitureAvailability"
+              required
+            >
+              <option value="true">Available</option>
+              <option value="false">Not Available</option>
+            </select>
+          </div>
+          <div>
+            <label for="furniturePrice">Price (₱):</label>
+            <input
+              type="number"
+              id="furniturePrice"
+              name="furniturePrice"
+              required
+              step="0.01"
+            />
+          </div>
+          <div>
+            <label for="roomImage">Image:</label>
+            <input
+              type="file"
+              id="roomImage"
+              name="roomImage"
+              accept="image/*"
+              required
+            />
+          </div>
+          <button type="submit">Add Furniture</button>
+        </form>
+
+        <form id="updateFurnitureForm" enctype="multipart/form-data">
+          <h2>Update Furniture</h2>
+          <div>
+            <label for="updateFurnitureId">Furniture ID:</label>
+            <input
+              type="text"
+              id="updateFurnitureId"
+              name="furnitureId"
+              required
+            />
+          </div>
+          <div>
+            <label for="updateFurnitureName">Furniture Name:</label>
+            <input
+              type="text"
+              id="updateFurnitureName"
+              name="furnitureName"
+              required
+            />
+          </div>
+          <div>
+            <label for="updateFurnitureDescription"
+              >Furniture Description:</label
+            >
+            <input
+              type="text"
+              id="updateFurnitureDescription"
+              name="furnitureDescription"
+              required
+            />
+          </div>
+          <div>
+            <label for="updatefurnitureColorScheme">Color Scheme:</label>
+            <input
+              type="text"
+              id="updatefurnitureColorScheme"
+              name="furnitureColorScheme"
+              required
+            />
+          </div>
+          <div>
+            <label for="updateFurnitureSize">Size (cm):</label>
+            <input
+              type="text"
+              id="updateFurnitureSize"
+              name="furnitureSize"
+              required
+              placeholder="e.g. 120x60x75"
+            />
+          </div>
+          <div>
+            <label for="updateFurnitureStock">Stock:</label>
+            <input
+              type="number"
+              id="updateFurnitureStock"
+              name="furnitureStock"
+              required
+            />
+          </div>
+          <div>
+            <label for="updateFurnitureAvailability">Availability:</label>
+            <select
+              id="updateFurnitureAvailability"
+              name="furnitureAvailability"
+              required
+            >
+              <option value="true">Available</option>
+              <option value="false">Not Available</option>
+            </select>
+          </div>
+          <div>
+            <label for="updateFurniturePrice">Price (₱):</label>
+            <input
+              type="number"
+              id="updateFurniturePrice"
+              name="furniturePrice"
+              required
+              step="0.01"
+            />
+          </div>
+          <button type="button" onclick="updateFurniture()">
+            Update Furniture
+          </button>
+        </form>
+
+        <form id="deleteFurnitureForm">
+          <h2>Delete Furniture</h2>
+          <div>
+            <label for="deleteFurnitureId">Furniture ID:</label>
+            <input
+              type="text"
+              id="deleteFurnitureId"
+              name="furnitureId"
+              required
+            />
+          </div>
+          <button type="button" onclick="deleteFurniture()">
+            Delete Furniture
+          </button>
+        </form>
+      </div>
+    </main>
+
+    <script src="{% static 'home/js/CRUDRoomFurnitures/addFurnitures.js' %}"></script>
+    <script src="{% static 'home/js/CRUDRoomFurnitures/deleteFurnitures.js' %}"></script>
+    <script src="{% static 'home/js/CRUDRoomFurnitures/updateFurnitures.js' %}"></script>
+    <script src="{% static 'home/js/CRUDRoomModels/addRoom.js' %}"></script>
+    <script src="{% static 'home/js/CRUDRoomModels/updateRoom.js' %}"></script>
+    <script src="{% static 'home/js/CRUDRoomModels/deleteRoom.js' %}"></script>
+    <script src="{% static 'home/js/CRUDRoomFurnitures/updateFurniture.js' %}"></script>
+    <script src="{% static 'home/js/CRUDRoomFurnitures/deleteFurniture.js' %}"></script>
+  </body>
+</html>

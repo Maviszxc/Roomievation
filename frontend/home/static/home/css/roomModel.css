@@ -1,0 +1,71 @@
+.parent {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Ensure full width */
+    height: 100%; /* Ensure full height if needed */
+}
+.div1 {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: flex-start;
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    position: relative; 
+    padding: 1.8rem;
+}
+
+.div1 svg {
+    width: 49.2%; /* Adjust the width of the SVG */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: rounded corners for SVG */
+    transition: transform 0.3s ease; /* Smooth transition for the hover effect */
+}
+
+.div1 svg:hover {
+    transform: scale(1.02); /* Slightly increase the size on hover */
+}
+
+
+.div1 img {
+    width: 50%; /* Main image takes full width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the area */
+    border-radius: 10px;
+    transition: transform 0.3s ease; /* Smooth transition for the hover effect */
+}
+
+.div1 img:hover {
+    transform: scale(1.02); /* Slightly increase the size on hover */
+}
+
+.div1-child {
+    display: flex; /* Use flexbox for alignment */
+    margin-top: 1rem; /* Add some spacing above the images */
+    width: 100%; /* Full width of .div1 */
+    max-height: 100%; /* Set a max height for the thumbnail section */
+    max-width: 50%;
+    overflow: hidden; /* Hide overflow if images exceed height */
+    gap: 10px;
+}
+
+.div1-child img {
+    width: 23.8%; /* Adjust width for horizontal alignment */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Optional: rounded corners for thumbnails */
+}
+
+.container {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    margin-top: 20px; /* Add some margin at the top */
+}
+
+.description {
+    max-width: 50%;
+}
+
+.description h1 {
+    margin: 0; /* Remove default margin */
+}
+

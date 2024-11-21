@@ -1,0 +1,246 @@
+/* designs for login & signup */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* overflow-y: hidden; */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 30px;
+  border: none;
+  width: 450px;
+  /* overflow-y: hidden; */
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  font-family: "Poppins", sans-serif;
+}
+
+.modal-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+/* Close button */
+.close {
+  color: #072f0e;
+  float: right;
+  font-size: 24px; /* Slightly smaller font size */
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #c5001a; /* Darker color on hover */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* LOGO in the modal*/
+.logo-signup {
+  display: block;
+  margin: 0 auto 0px;
+  max-width: 20%;
+  height: auto;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-column {
+  flex: 1;
+  
+}
+
+.form-column:last-child {
+  margin-right: 0;
+}
+
+.full-width {
+  flex-basis: 100%;
+  margin-top: 1px;
+}
+
+form label {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+form input {
+  padding: 12px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: border-color 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form input::placeholder {
+  color: #aaa;
+  opacity: 1;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+form input:focus {
+  border-color: #673704; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+form .address-input {
+  width: 100%;
+}
+
+/* Base styles for buttons */
+form button {
+  background-color: #317637;
+  border: 2px solid transparent;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 10px;
+}
+
+form button:hover,
+form button:focus {
+  background-color: rgb(7, 51, 20);
+  color: white;
+}
+
+form button:focus {
+  outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .modal-content {
+    width: 90%; /* Make modal responsive on small screens */
+  }
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.forgot-password {
+  text-align: center;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.signup-prompt {
+  text-align: center;
+  margin-top: 15px;
+  font-style: italic;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  padding: 10px 0;
+  padding-left: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  background: transparent;
+ 
+}
+
+form input::placeholder {
+  color: #aaa;
+  opacity: 1;
+  font-size: 13px;
+  margin: 10px;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+  border-bottom: 2px solid #42393b;
+  
+}
+.grid-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grid-item:hover {
+  transform: scale(1.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-container i {
+  position: absolute;
+  left: 8px;
+  top: 37%;
+  transform: translateY(-50%);
+  color: #105e10;
+  margin-right: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding-left: 50px;
+}
+
+.login-prompt {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.login-prompt p {
+  font-style: italic;
+}

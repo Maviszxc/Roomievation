@@ -1,0 +1,398 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+:root {
+  --black: #272d3b;
+  --white: #9e9e9e;
+  --red: #ffd59d;
+  --coral: #3b3b3b;
+  --gradient: linear-gradient(90deg, var(--black), var(--white));
+}
+
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  transition: all 0.2s linear;
+}
+
+*::selection {
+  background: var(--red);
+  color: #fff;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styling for WebKit-based browsers */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the scrollbar for horizontal scrolling */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /* Background of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--black); /* Color of the scroll thumb */
+  border-radius: 10px; /* Rounded corners for the scroll thumb */
+  border: 2px solid rgba(0, 0, 0, 0.1); /* Optional border around the scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #3b3b3b; /* Thumb color on hover */
+}
+
+/* For Firefox (scrollbar styles are a bit different) */
+body {
+  scrollbar-width: thin; /* Makes the scrollbar thin */
+  scrollbar-color: var(--black) rgba(0, 0, 0, 0.1); /* Thumb and track colors */
+}
+
+/* Home Style */
+
+body {
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+section {
+  padding: 3rem 9%;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 3rem;
+  margin-top: 1rem;
+  border-radius: 5rem;
+  color: #3b3b3b;
+  cursor: pointer;
+  font-size: 1.7rem;
+}
+
+.btnLight {
+  display: inline-block;
+  padding: 0.7rem 3rem;
+  margin-top: 1rem;
+  border-radius: 5rem;
+  color: #3b3b3b;
+  cursor: pointer;
+  font-size: 1.7rem;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  background: #3b3b3b;
+  color: #ffffff;
+}
+
+.btnLight:hover {
+  transform: scale(1.1);
+  background: #dcdcdc;
+  color: #3b3b3b;
+}
+
+/* logo */
+
+/* features */
+
+.heading {
+  text-align: center;
+  color: transparent;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 5rem;
+  text-transform: uppercase;
+  padding: 1rem;
+}
+
+.features .box-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.features .box-container .box {
+  margin: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  background-color: rgba(229, 229, 229, 0.05);
+  padding: 1rem;
+  flex: 1 1 30rem;
+  cursor: pointer;
+}
+
+.features .box-container .box i {
+  color: var(--black);
+  font-size: 5rem;
+  padding: 1rem;
+}
+
+.features .box-container .box h3 {
+  color: var(--black);
+  font-size: 2.4rem;
+}
+
+.features .box-container .box p {
+  color: #666;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.features .box-container .box:hover {
+  background: #cacaca;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.features .box-container .box:hover > * {
+  color: #f3efef;
+}
+
+/* About */
+
+.about .row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.about .row .image {
+  flex: 1 1 40rem;
+}
+
+.about .row .image img {
+  width: 100%;
+}
+
+.about .row .content {
+  flex: 1 1 40rem;
+}
+
+.about .row .content h3 {
+  color: var(--black);
+  font-size: 3.5rem;
+}
+
+.about .row .content p {
+  color: #3b3b3b;
+  font-size: 1.7rem;
+  padding: 1rem 0;
+}
+
+/* Usage */
+
+.usage .row {
+  display: flex;
+  align-items: center;
+}
+
+.usage .row .divider {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  max-width: 500px;
+  height: auto; /* Maintain the aspect ratio */
+  padding: 0 1rem; /* Maintain the padding if necessary */
+  margin: 0 auto; /* Ensure the divider is centered on the page */
+}
+
+.usage .row .box-container .box {
+  padding: 1rem 0;
+}
+
+.usage .row .box-container .box i {
+  color: var(--coral);
+  padding: 1rem 0;
+  font-size: 4.5rem;
+}
+
+.usage .row .box-container .box h3 {
+  color: var(--black);
+  font-size: 2.5rem;
+}
+
+.usage .row .box-container .box p {
+  color: #666;
+  padding: 1rem 0;
+  font-size: 1.5rem;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0); /* Initially transparent */
+  z-index: 1000;
+  padding: 2rem 9%;
+  border-bottom: 0.1rem solid rgba(193, 193, 193, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center; /* Vertically center the logo and h3 */
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 1rem;
+}
+
+h3 {
+  font-size: 2rem;
+  color: #1a1a1a;
+}
+
+header.scrolled {
+  background: rgba(255, 255, 255, 0.7); /* Slightly translucent */
+  backdrop-filter: blur(10px); /* Apply blur effect */
+}
+
+header .logo {
+  font-weight: bolder;
+  color: #1a1a1a;
+  font-size: 2.5rem;
+}
+
+header .navbar a {
+  font-size: 2rem;
+  margin-left: 2.5rem;
+  color: #161616;
+}
+
+header .navbar a:hover {
+  color: var(--red);
+}
+
+#menu-bar {
+  font-size: 3rem;
+  color: #161616; /* Adjusted to match navbar */
+  cursor: pointer;
+  display: none;
+}
+
+/* Home */
+
+.home {
+  background: url(../pics/BG7.jpg) no-repeat center center/cover;
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+}
+
+.home .content {
+  padding-top: 5rem;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+.home .content h3 {
+  padding-top: 5rem;
+  font-size: 6.5rem;
+  color: #383838;
+}
+
+.home .content p {
+  font-size: 1.7rem;
+  color: #383838;
+  padding: 1rem 0;
+}
+
+.home .swiper-container {
+  width: 100%; /* Centered slider */
+  max-width: 1000px; /* Maximum width */
+  position: relative; /* Allows for positioning */
+  margin: 3rem auto; /* Center the slider */
+  overflow: hidden; /* Hide overflowing parts */
+}
+
+.home .swiper-wrapper {
+  display: flex; /* Ensure slides are displayed in a row */
+}
+
+.home .swiper-slide {
+  width: 100rem; /* Width of each slide */
+  height: 50rem; /* Height of each slide */
+  position: relative; /* Allows proper sliding effect */
+}
+
+.home .swiper-slide img {
+  display: block;
+  border-radius: 5%; /* Rounded corners for images */
+  width: 100%; /* Ensure image fills the slide */
+  height: 100%; /* Ensure image fills the slide */
+  object-fit: cover; /* Maintain aspect ratio of images */
+}
+
+/* Media Queries */
+
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+
+  header {
+    padding: 2rem 4%;
+  }
+}
+
+@media (max-width: 768px) {
+  #menu-bar {
+    display: block;
+  }
+
+  header .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--black);
+    border-top: 0.1rem solid rgba(255, 255, 255, 0.3);
+    padding: 1rem 2rem;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  header .navbar a {
+    display: block;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--gradient);
+    text-align: center;
+    border-radius: 0.5rem;
+  }
+
+  header .navbar a:hover {
+    color: var(--black);
+  }
+
+  .fa-times {
+    transform: rotate(180deg);
+  }
+}
+
+@media (max-width: 400px) {
+  html {
+    font-size: 50%;
+  }
+
+  .heading {
+    font-size: 4rem;
+  }
+}
